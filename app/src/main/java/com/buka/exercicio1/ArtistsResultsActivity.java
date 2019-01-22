@@ -52,42 +52,13 @@ public class ArtistsResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String searchTerms = intent.getStringExtra(EXTRA_SEARCH_TEXT);
 
-        SearchArtistAsyncTask searchArtistAsyncTask = new SearchArtistAsyncTask();
-        searchArtistAsyncTask.execute(searchTerms);
+
+        // TODO: Passo #5: Instancie e execute o AsyncTask criado, passando como parâmetro os termos
+        // de pesquisa
     }
 
-    class SearchArtistAsyncTask extends AsyncTask<String, Void, ArrayList<Artist>> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            loadingProgressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected ArrayList<Artist> doInBackground(String... searchTerm) {
-            try {
-                Response<LastFmApiResponse> response = lastFmApi.searchArtist(searchTerm[0], API_KEY).execute();
-                if (response.isSuccessful()) {
-                    ArrayList<Artist> artistsFound = response.body()
-                            .getSearchResults().getArtistsFound();
-                    return artistsFound;
-                } else {
-                    Log.e(ArtistsResultsActivity.class.getSimpleName(), response.message());
-                    return null;
-                }
-            } catch (IOException e) {
-                Log.e(ArtistsResultsActivity.class.getSimpleName(), e.getMessage());
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Artist> artists) {
-            super.onPostExecute(artists);
-
-            loadingProgressBar.setVisibility(View.INVISIBLE);
-
-            adapter.setArtists(artists);
-        }
-    }
+    // TODO: Passo #1: Crie uma classe que herde de AsyncTask, e que tome uma String como parâmetro e retorne uma ArrayList<Artist>
+    // TODO: Passo #2: Implemente o método onPreExecute(), sendo necessário exibir o ProgressBar neste
+    // TODO: Passo #3: Implementar o método doInBackground(), use o método searchArtist() do objecto lastFmApi
+    // TODO: Passo #4: Implementar o método onPostExecute(), o ProgressBar será ocultado novamente, e a lista de artistas será mostrada com o adapter
 }

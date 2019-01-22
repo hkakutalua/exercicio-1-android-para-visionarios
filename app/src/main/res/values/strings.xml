@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Muzik</string>
+    <string name="search_hint">Artista a Pesquisar</string>
+    <string name="search_text">Pesquisar</string>
+    <string name="search_activity_label">Resultados da Pesquisa</string>
+    <string name="artist_text_empty_error">Por favor escreva o nome do artista</string>
+</resources>
